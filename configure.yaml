@@ -1,0 +1,22 @@
+CAPS_mESC:
+  [  
+    "mESC_1_29Jul2022_S1",
+    "mESC_2_29Jul2022_S2",
+  ]
+
+CAPS_GBM:
+  [
+    "brain_healthy_29Jul2022_S3",
+    "brain_tumor_29Jul2022_S4",
+  ]
+  
+H38_spikein_ref: "/users/ludwig/ebu571/ebu571/14Jul2022_2022_100cycles/resource/GRCh38_spikein.fa"
+MM9_spikein_ref: "/users/ludwig/ebu571/ebu571/14Jul2022_2022_100cycles/resource/caps_mm9_lambda.fa"
+
+HUMAN_SMP:
+  [
+    "brain_healthy_29Jul2022_S3",
+    "brain_tumor_29Jul2022_S4"
+  ]
+  
+HUMAN_REF: "/gpfs2/well/ludwig/users/cfo155/14Jul2022/resource/GRCh38_spikein.fa"
