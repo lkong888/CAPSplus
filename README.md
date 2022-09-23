@@ -4,7 +4,7 @@ Authors: Haiqi Xu,1,2,3 Jinfeng Chen,1,2,* Jingfei Cheng,1,2,* Linzhen Kong,1,2,
 # Introduction
 These scripts are for CAPSplus data analysis. The following steps are included:
 1. Data preprocessing: fastp, alignment, deduplicate
-2. Methylation calling by asTair. Check conversion rate on spike in.
+2. Methylation calling by asTair. Check conversion rate on spike-in.
 3. Remove blacklisted regions and known SNV. 
 4. Downstream analysis: correlation, genomic anotations, cnv analysis and IGV visualisation.
 
