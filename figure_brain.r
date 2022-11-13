@@ -50,69 +50,6 @@ ggsave("/users/ludwig/ebu571/ebu571/CAPS_haiqi/plots/hmCG_1kb_brain.pdf",p, widt
 ################################################################################################
 
 
-meth_h <- fread("brain_healthy_29Jul2022_S3.md.astair_CpG.filtered.chr.hg38_genomic_features.agg.txt", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, fill=TRUE)
-colnames(meth_h) <- c("chr","start","end","features","mC","aC")
-meth_h$ratio <- meth_h$mC/meth_h$aC
-
-meth_t <- fread("brain_tumor_29Jul2022_S4.md.astair_CpG.filtered.chr.hg38_genomic_features.agg.txt", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, fill=TRUE)
-colnames(meth_t) <- c("chr","start","end","features","mC","aC")
-meth_t$ratio <- meth_t$mC/meth_t$aC
-
-dat <- merge(meth_h, meth_t, by=c("chr","start", "end"))
-meth <- dat %>% dplyr::select(features.x, ratio.x, ratio.y)
-colnames(meth) <- c("features", "healthy", "tumor")
-meth <- melt(meth, by="features")
-
-p <- ggplot(meth, aes(x=features,y=value, fill=variable)) + 
-  geom_boxplot(outlier.shape = NA, width=0.8) +
-  theme_light() + xlab("") +
-  ylab("modification level") +
-  ylim(0,0.6)+
-  scale_fill_manual(values=c("#67A9CF","#EF8A62"))+
-  stat_summary(fun = mean, geom = "point",color = "black", size=1, position=position_dodge(0.75)) +
-  stat_summary(fun = mean, geom="text", aes(label = round(..y.., 3)), position=position_dodge(0.8), vjust=-0.5)+
-  theme(legend.position="bottom", axis.text.x = element_text(angle=45,hjust = 1))
-ggsave("/users/ludwig/ebu571/ebu571/CAPS_haiqi/plots/hmCG_level_genomic_features_test.pdf",p, width=6, height = 6)
-
-
-
-####plot 5hmC distribution oin different genomic features, including intergenic
-.libPaths("/well/ludwig/users/ebu571/R/4.0/skylake")
-suppressPackageStartupMessages(library(data.table))
-suppressPackageStartupMessages(library(parallel))
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(RColorBrewer))
-library(readr)
-options(bitmapType='cairo-png')
-setwd("/users/ludwig/ebu571/ebu571/CAPS_haiqi/jf_meth")
-meth_h <- fread("brain_healthy_29Jul2022_S3.md.astair_CpG.filtered.chr.hg38_genomic_features_intergenic.agg.txt", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, fill=TRUE)
-colnames(meth_h) <- c("chr","start","end","features","mC","aC")
-meth_h$ratio <- meth_h$mC/meth_h$aC
-
-meth_t <- fread("brain_tumor_29Jul2022_S4.md.astair_CpG.filtered.chr.hg38_genomic_features_intergenic.agg.txt", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, fill=TRUE)
-colnames(meth_t) <- c("chr","start","end","features","mC","aC")
-meth_t$ratio <- meth_t$mC/meth_t$aC
-
-dat <- merge(meth_h, meth_t, by=c("chr","start", "end"))
-meth <- dat %>% dplyr::select(features.x, ratio.x, ratio.y)
-colnames(meth) <- c("features", "healthy", "tumor")
-meth <- melt(meth, by="features")
-meth$features <- factor(meth$features, level=c("CTCF_binding_site", "enhancer", "open_chromatin_region", "TF_binding_site", "promoter", "exon", "intron", "genebody", "intergenic"))
-
-p <- ggplot(meth, aes(x=features,y=value, fill=variable)) + 
-  geom_boxplot(outlier.shape = NA, width=0.8) +
-  theme_light() + xlab("") +
-  ylab("modification level") +
-  ylim(0,0.6)+
-  scale_fill_manual(values=c("#67A9CF","#EF8A62"))+
-  stat_summary(fun = mean, geom = "point",color = "black", size=1, position=position_dodge(0.75)) +
-  stat_summary(fun = mean, geom="text", aes(label = round(..y.., 3)), position=position_dodge(0.8), vjust=-0.5)+
-  theme(legend.position="bottom", axis.text.x = element_text(angle=45,hjust = 1))
-ggsave("/users/ludwig/ebu571/ebu571/CAPS_haiqi/plots/hmCG_level_genomic_features_intergenic.pdf",p, width=6, height = 6)
-
-
-
 #######################################################################
 
 #meth1 <- fread("GSE46710_Ad_Front.hmC_sites_FDR_0.01.hg38.bed", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, drop=c(1:8), fill=TRUE)
