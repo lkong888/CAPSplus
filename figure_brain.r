@@ -52,7 +52,6 @@ ggsave("/users/ludwig/ebu571/ebu571/CAPS_haiqi/plots/hmCG_1kb_brain.pdf",p, widt
 
 #######################################################################
 
-#meth1 <- fread("GSE46710_Ad_Front.hmC_sites_FDR_0.01.hg38.bed", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, drop=c(1:8), fill=TRUE)
 meth1 <- fread("GSE46710_Ad_Front.hmC_sites_FDR_0.01.hg38_filtered.bed", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T, fill=TRUE)
 meth2 <- fread("brain_healthy_29Jul2022_S3.md.astair_CpG.filtered.chr.bedGraph", header = FALSE, nThread = 8, stringsAsFactors = FALSE, data.table = FALSE, sep = "\t", verbose = T)
 colnames(meth1) <- c("chr","start","end","aC","mC","meth")
