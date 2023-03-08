@@ -21,38 +21,35 @@ mm9 for mESCs samples; hg38 for brain samples
  
  standard_caps_brain.smk   ### alignment, mark duplicate, calling methylation, filtering for brain samples
 
-# 2. Raw signals correlation between CAPSplus, CAPS, TAB-seq and ACE-seq
+# 2. Raw signals correlation between CAPSplus, CAPS, TAB-seq and ACE-seq(Figure 4c, Figure S13)
 caps_filtering.r
 
 raw_signal.sh
 
 figure_mESC.r
 
-# 3. Raw signal correlation between mESCs replicates
+# 3. Raw signal correlation between mESCs replicates (Figure S12)
 mESC_replicate.r
 
-# 4. Statistical testing of high confidence 5hmC sites and genomic annotations
+# 4. Statistical testing of high confidence 5hmC sites and genomic annotations(Figure S16)
  annotation.sh
  
  CAPS_annotation.r
  
- # 5. Subsampling and coverage analysis
+ # 5. Subsampling and coverage analysis(Figure S15)
   SI12.sh
   
   figure_mESC.r
   
- # 6. Downstream analysis for normal brain and glioblastoma 
+ # 6. Downstream analysis for normal brain and glioblastoma (Figure 4d,f, Figure S17)
  brain_work.sh
  
  figure_brain.r
  
- # 7. CNV analysis
- cnv.r
- 
- # 8. Per-base quality plot
+ # 8. Per-base quality plot(Figure S14)
  phred_score.sh
  
- # 9. IGV visualisation
+ # 9. IGV visualisation(Figure 4e)
  bedtobw.sh
  
  
